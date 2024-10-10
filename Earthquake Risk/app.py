@@ -334,7 +334,7 @@ def show_map():
         <i class="fa fa-map-marker" style="color:red"></i> Yüksek Riskli Bölge<br>
         <i class="fa fa-map-marker" style="color:orange"></i> Ciddi Riskli Bölge<br>
         <i class="fa fa-map-marker" style="color:gray"></i> İzleme Gerektiren Bölge<br>
-        <i class="fa fa-map-marker" style="color:green"></i> Düşük Riskli Bölge<br>
+        <i class="fa fa-map-marker" style="color:blue"></i> Düşük Riskli Bölge<br>
         </div>
     '''
     m.get_root().html.add_child(folium.Element(legend_html))
