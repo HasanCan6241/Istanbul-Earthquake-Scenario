@@ -36,9 +36,9 @@ This section provides users with an up-to-date list of earthquakes that have occ
 
 The earthquake data is fetched in real-time through web scraping from the Kandilli Observatory, ensuring that users have the latest information.
 
-<img src="Earthquake Risk/static/images/project/Risk-Haritası-1.png" alt="risk1" width="850" height="450">  <!-- Add an image relevant to your project -->
+<img src="Earthquake Risk/static/images/project/Yaşanan Son Depremler-1.png" alt="Son Depremler-1" width="850" height="450">  <!-- Add an image relevant to your project -->
 <br>
-<img src="Earthquake Risk/static/images/project/Risk-Haritası-2.png" alt="risk2" width="850" height="450">  <!-- Add an image relevant to your project -->
+<img src="Earthquake Risk/static/images/project/Yaşanan Son Depremler-2.png" alt="Son Depremler-2" width="850" height="450">  <!-- Add an image relevant to your project -->
 
 ### 3. **Risk Map**
 The Risk Map provides a detailed overview of Istanbul's earthquake risk, broken down by district. This map is interactive and color-coded to represent different levels of risk:
@@ -48,6 +48,10 @@ The Risk Map provides a detailed overview of Istanbul's earthquake risk, broken 
 - **Low-Risk Areas**: Districts where minimal damage and casualties are expected.
 
 The map uses Folium for interactive navigation, allowing users to zoom in on specific districts and neighborhoods for more localized information.
+
+<img src="Earthquake Risk/static/images/project/Risk-Haritası-1.png" alt="risk1" width="850" height="450">  <!-- Add an image relevant to your project -->
+<br>
+<img src="Earthquake Risk/static/images/project/Risk-Haritası-2.png" alt="risk2" width="850" height="450">  <!-- Add an image relevant to your project -->
 
 ### 4. **Data Analysis**
 This section presents detailed data visualizations to help users understand the potential impact of an earthquake in Istanbul. The dataset includes variables such as:
@@ -60,6 +64,18 @@ This section presents detailed data visualizations to help users understand the 
 - **Sheltering Needs**: The estimated number of people who will need temporary shelter following an earthquake.
 
 Visualizations are created using Plotly to allow users to interact with the data, making it easier to understand the potential damage and the areas most at risk.
+
+<img src="Earthquake Risk/static/images/project/veri-analizi-1.png" alt="veri-analizi-1" width="850" height="450">  <!-- Add an image relevant to your project -->
+<img src="Earthquake Risk/static/images/project/veri-analizi-2.png" alt="veri-analizi-2" width="850" height="450">  <!-- Add an image relevant to your project -->
+<img src="Earthquake Risk/static/images/project/veri-analizi-3.png" alt="veri-analizi-3" width="850" height="450">  <!-- Add an image relevant to your project -->
+<img src="Earthquake Risk/static/images/project/veri-analizi-4.png" alt="veri-analizi-4" width="850" height="450">  <!-- Add an image relevant to your project -->
+<img src="Earthquake Risk/static/images/project/veri-analizi-5.png" alt="veri-analizi-5" width="850" height="450">  <!-- Add an image relevant to your project -->
+<img src="Earthquake Risk/static/images/project/veri-analizi-6.png" alt="veri-analizi-6" width="850" height="450">  <!-- Add an image relevant to your project -->
+<img src="Earthquake Risk/static/images/project/veri-analizi-7.png" alt="veri-analizi-7" width="850" height="450">  <!-- Add an image relevant to your project -->
+<img src="Earthquake Risk/static/images/project/veri-analizi-8.png" alt="veri-analizi-8" width="850" height="450">  <!-- Add an image relevant to your project -->
+<img src="Earthquake Risk/static/images/project/veri-analizi-9.png" alt="veri-analizi-9" width="850" height="450">  <!-- Add an image relevant to your project -->
+<img src="Earthquake Risk/static/images/project/veri-analizi-10.png" alt="veri-analizi-10" width="850" height="450">  <!-- Add an image relevant to your project -->
+
 
 ### 5. **AI-Based Predictions**
 One of the most powerful features of the platform is its AI-based risk prediction tool. Using machine learning models, the platform predicts the likelihood of various risk factors in different districts. Users can select their district and neighborhood to receive predictions on:
