@@ -2,7 +2,7 @@
 
 This project aims to provide a comprehensive platform for raising awareness and preparing the residents of Istanbul for potential earthquake scenarios, specifically focusing on the 7.5 Mw earthquake expected in the region. By utilizing advanced data analysis, AI-based predictions, and interactive visualizations, the platform seeks to inform users about risk factors and potential consequences while offering personalized recommendations for earthquake preparedness. The dataset used in this project was provided by the Istanbul Metropolitan Municipality and was last updated on March 2, 2023.
 
-<img src="Earthquake Risk/static/images/model.jpeg" alt="home" width="800" height="420">  <!-- Add an image relevant to your project -->
+<img src="Earthquake Risk/static/images/model.jpeg" alt="home" width="850" height="450">  <!-- Add an image relevant to your project -->
 
 ---
 
