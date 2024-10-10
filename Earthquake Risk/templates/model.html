@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="static/images/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Yapay Zeka Risk Tahmin</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff;
+            font-size: 1rem;
+            margin-right: 20px;
+            transition: color 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #367E7F;
+        }
+
+        footer {
+            background-color: #212529;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #28a745;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .risk-category {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .risk-category.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .risk-title {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .risk-description,risk-class {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+        .image-container {
+            padding-top: 60px;
+        }
+
+        .model-image {
+            width: 100%;
+            height: 550px;
+            margin: 40px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .model-image.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">İstanbul Deprem Senaryosu</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/son-depremler">Yaşanan Son Depremler</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/risk_map">Risk Haritası</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/data_analysis">Veri Analizleri</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/tahmin">Yapay Zeka Tabanlı Tahmin</a></li>
+                    <li class="nav-item"><a class="nav-link" href="deprem_hazırlık">Deprem Hazırlığı</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='images/model.jpeg') }}" alt="Model Resmi" class="model-image">
+        </div>
+
+        <form action="/tahmin" method="POST" class="mb-4" id="tahmin-form">
+            <div class="mb-3">
+                <label for="ilce" class="form-label">İlçe Seçin:</label>
+                <select name="ilce" id="ilce" class="form-select" required>
+                    {% for ilce in ilce_mahalle['ilce_adi'].unique() %}
+                    <option value="{{ ilce }}">{{ ilce }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="mahalle" class="form-label">Mahalle Seçin:</label>
+                <select name="mahalle" id="mahalle" class="form-select" required>
+                    {% for mahalle in ilce_mahalle['mahalle_adi'].unique() %}
+                    <option value="{{ mahalle }}">{{ mahalle }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Tahmin Et</button>
+        </form>
+
+        {% if tahmin_sonuclari %}
+        <h2 class="text-center my-4">Deprem Senaryosu Tahmin Sonuçları</h2>
+        {% if tahmin_sonuclari.error %}
+        <div class="alert alert-danger">{{ tahmin_sonuclari.error }}</div>
+        {% else %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="risk-category">
+                        <div class="risk-title">Bina Risk Kategorisi:</div>
+                        <p class="risk-class">{{ tahmin_sonuclari['bina'][0]}}</p>
+                        <p class="risk-description">{{ tahmin_sonuclari['bina'][1] }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="risk-category">
+                        <div class="risk-title">Can Kaybı Risk Kategorisi:</div>
+                        <p class="risk-class">{{ tahmin_sonuclari['can_kaybi'][0] }}</p>
+                        <p class="risk-description">{{ tahmin_sonuclari['can_kaybi'][1] }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="risk-category">
+                        <div class="risk-title">Personel İhtiyacı Risk Kategorisi:</div>
+                        <p class="risk-class">{{ tahmin_sonuclari['personel_ihtiyacı'][0]}}</p>
+                        <p class="risk-description">{{ tahmin_sonuclari['personel_ihtiyacı'][1]}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="risk-category">
+                        <div class="risk-title">Yangın Risk Kategorisi:</div>
+                        <p class="risk-class">{{ tahmin_sonuclari['yangin'][0] }}</p>
+                        <p class="risk-description">{{ tahmin_sonuclari['yangin'][1]}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="risk-category">
+                        <div class="risk-title">Hastalık Risk Kategorisi:</div>
+                        <p class="risk-class">{{ tahmin_sonuclari['hastalik'][0] }}</p>
+                        <p class="risk-description">{{ tahmin_sonuclari['hastalik'][1] }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="risk-category">
+                        <div class="risk-title">Barınma Risk Kategorisi:</div>
+                        <p class="risk-class">{{ tahmin_sonuclari['barinma'][0] }}</p>
+                        <p class="risk-description">{{ tahmin_sonuclari['hastalik'][1]}}</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Hasan Can Çelik. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Sayfa yüklendiğinde model resmi için animasyonu başlat
+            $('.model-image').addClass('show');
+
+            // Risk kategorileri için animasyonu başlat
+            $('.risk-category').each(function (index) {
+                $(this).delay(index * 300).queue(function (next) {
+                    $(this).addClass('show');
+                    next();
+                });
+            });
+
+            // Tahmin butonuna basıldığında animasyonu devre dışı bırak
+            $('#tahmin-form').on('submit', function () {
+                $('.model-image').removeClass('show'); // Model resmi animasyonunu kaldır
+            });
+        });
+        document.getElementById('ilce').addEventListener('change', function() {
+        var ilce = this.value;
+        var mahalleSelect = document.getElementById('mahalle');
+        mahalleSelect.innerHTML = '<option value="">Mahalle Seçiniz</option>';
+
+        if (ilce !== "") {
+            fetch(`/get_mahalleler?ilce=${ilce}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.mahalleler.forEach(function(mahalle) {
+                        var option = document.createElement('option');
+                        option.value = mahalle;
+                        option.text = mahalle;
+                        mahalleSelect.appendChild(option);
+                    });
+                });
+        }
+    });
+    </script>
+</body>
+
+</html>

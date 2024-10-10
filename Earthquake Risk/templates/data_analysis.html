@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İstanbul Deprem Veri Analizi</title>
+    <link rel="icon" type="image/png" href="static/images/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+      .navbar {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff;
+            font-size: 1rem;
+            margin-right: 20px;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #367E7F;
+        }
+
+        /* Container Styles */
+        .container-graph {
+            max-width: 1600px;
+            margin: 28px auto;
+            padding: 28px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 45px;
+            justify-content: center; /* Grafikleri ortalamak için */
+        }
+
+        /* Graph Styles */
+        .graph {
+            flex: 1 1 48%;
+            min-width: 300px;
+            height: 500px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            margin: 0 auto; /* Grafiği ortalar */
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+        .graph:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02);
+        }
+        .graph h1 {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        footer {
+            background-color: #212529;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #28a745;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">İstanbul Deprem Senaryosu</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/son-depremler">Yaşanan Son Depremler</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/risk_map">Risk Haritası</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/data_analysis">Veri Analizleri</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/tahmin">Yapay Zeka Tabanlı Tahmin</a></li>
+                    <li class="nav-item"><a class="nav-link" href="deprem_hazırlık">Deprem Hazırlığı</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="page-content-wrapper" style="margin-top: 80px;"> <!-- Navbar yüksekliğine göre marj ver -->
+        <div class="container-graph">
+            <div class="graph" id="cok_agir_hasarli_bina_sayisi"></div>
+            <div class="graph" id="agir_hasarli_bina_sayisi"></div>
+            <div class="graph" id="orta_hasarli_bina_sayisi"></div>
+            <div class="graph" id="hafif_hasarli_bina_sayisi"></div>
+            <div class="graph" id="can_kaybi_sayisi"></div>
+            <div class="graph" id="agir_yarali_sayisi"></div>
+            <div class="graph" id="hastanede_tedavi_sayisi"></div>
+            <div class="graph" id="hafif_yarali_sayisi"></div>
+            <div class="graph" id="dogalgaz_boru_hasari"></div>
+            <div class="graph" id="icme_suyu_boru_hasari"></div>
+            <div class="graph" id="atik_su_boru_hasari"></div>
+            <div class="graph" id="gecici_barinma"></div>
+            <div class="graph" id="altyapi_hasari_grafik"></div>
+            <div class="graph" id="bina_ve_altyapi_karsilastirma"></div>
+            <div class="graph" id="bina_hasar_dagilimi"></div>
+            <div class="graph" id="can_kaybi_ve_yarali_karsilastirma"></div>
+            <div class="graph" id="bina_hasar_turleri_pie"></div>
+            <div class="graph" id="yasam_riski_pie"></div>
+            <div class="graph" id="hafif_ve_orta_hasarli_bina_karsilastirma"></div>
+            <div class="graph" id="hasar_cankaybi"></div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 İstanbul Deprem Analiz. Tüm Hakları Saklıdır. <a href="#">Gizlilik Politikası</a></p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var grafikler = {{ grafikler|tojson|safe }};
+        var graphIds = [
+            'cok_agir_hasarli_bina_sayisi',
+            'agir_hasarli_bina_sayisi',
+            'orta_hasarli_bina_sayisi',
+            'hafif_hasarli_bina_sayisi',
+            'can_kaybi_sayisi',
+            'agir_yarali_sayisi',
+            'hastanede_tedavi_sayisi',
+            'hafif_yarali_sayisi',
+            'dogalgaz_boru_hasari',
+            'icme_suyu_boru_hasari',
+            'atik_su_boru_hasari',
+            'gecici_barinma',
+            'altyapi_hasari_grafik',
+            'bina_ve_altyapi_karsilastirma',
+            'bina_hasar_dagilimi',
+            'can_kaybi_ve_yarali_karsilastirma',
+            'bina_hasar_turleri_pie',
+            'yasam_riski_pie',
+            'hafif_ve_orta_hasarli_bina_karsilastirma',
+            'hasar_cankaybi'
+        ];
+
+        function plotGraph(elementId, graphData) {
+            Plotly.newPlot(elementId, graphData.data, graphData.layout);
+        }
+
+        graphIds.forEach(function(id) {
+            plotGraph(id, JSON.parse(grafikler[id]));
+        });
+    </script>
+</body>
+</html>
