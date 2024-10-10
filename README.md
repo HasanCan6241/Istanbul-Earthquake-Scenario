@@ -65,16 +65,16 @@ This section presents detailed data visualizations to help users understand the 
 
 Visualizations are created using Plotly to allow users to interact with the data, making it easier to understand the potential damage and the areas most at risk.
 
-<img src="Earthquake Risk/static/images/project/veri-analizi-1.png" alt="veri-analizi-1" width="850" height="450">  <!-- Add an image relevant to your project -->
-<img src="Earthquake Risk/static/images/project/veri-analizi-2.png" alt="veri-analizi-2" width="850" height="450">  <!-- Add an image relevant to your project -->
-<img src="Earthquake Risk/static/images/project/veri-analizi-3.png" alt="veri-analizi-3" width="850" height="450">  <!-- Add an image relevant to your project -->
-<img src="Earthquake Risk/static/images/project/veri-analizi-4.png" alt="veri-analizi-4" width="850" height="450">  <!-- Add an image relevant to your project -->
-<img src="Earthquake Risk/static/images/project/veri-analizi-5.png" alt="veri-analizi-5" width="850" height="450">  <!-- Add an image relevant to your project -->
-<img src="Earthquake Risk/static/images/project/veri-analizi-6.png" alt="veri-analizi-6" width="850" height="450">  <!-- Add an image relevant to your project -->
-<img src="Earthquake Risk/static/images/project/veri-analizi-7.png" alt="veri-analizi-7" width="850" height="450">  <!-- Add an image relevant to your project -->
-<img src="Earthquake Risk/static/images/project/veri-analizi-8.png" alt="veri-analizi-8" width="850" height="450">  <!-- Add an image relevant to your project -->
-<img src="Earthquake Risk/static/images/project/veri-analizi-9.png" alt="veri-analizi-9" width="850" height="450">  <!-- Add an image relevant to your project -->
-<img src="Earthquake Risk/static/images/project/veri-analizi-10.png" alt="veri-analizi-10" width="850" height="450">  <!-- Add an image relevant to your project -->
+<img src="Earthquake Risk/static/images/project/veri-analizi-1.png" alt="veri-analizi-1" width="850" height="450">  
+<img src="Earthquake Risk/static/images/project/veri-analizi-2.png" alt="veri-analizi-2" width="850" height="450">  
+<img src="Earthquake Risk/static/images/project/veri-analizi-3.png" alt="veri-analizi-3" width="850" height="450">  
+<img src="Earthquake Risk/static/images/project/veri-analizi-4.png" alt="veri-analizi-4" width="850" height="450">  
+<img src="Earthquake Risk/static/images/project/veri-analizi-5.png" alt="veri-analizi-5" width="850" height="450">  
+<img src="Earthquake Risk/static/images/project/veri-analizi-6.png" alt="veri-analizi-6" width="850" height="450">
+<img src="Earthquake Risk/static/images/project/veri-analizi-7.png" alt="veri-analizi-7" width="850" height="450"> 
+<img src="Earthquake Risk/static/images/project/veri-analizi-8.png" alt="veri-analizi-8" width="850" height="450">  
+<img src="Earthquake Risk/static/images/project/veri-analizi-9.png" alt="veri-analizi-9" width="850" height="450">  
+<img src="Earthquake Risk/static/images/project/veri-analizi-10.png" alt="veri-analizi-10" width="850" height="450">  
 
 
 ### 5. **AI-Based Predictions**
@@ -88,13 +88,24 @@ One of the most powerful features of the platform is its AI-based risk predictio
 
 These predictions provide a personalized earthquake risk profile for users, helping them understand the specific threats they may face and prepare accordingly.
 
-### 6. **Preparedness Information**
+<img src="Earthquake Risk/static/images/project/model-1.png" alt="model-1" width="850" height="450"> 
+<br>
+<img src="Earthquake Risk/static/images/project/model-2.png" alt="model-2" width="850" height="450">  
+
+
+### 6. **Earthquake Preparedness Information**
 Preparedness is key to surviving and mitigating the effects of an earthquake. This section of the platform provides users with critical information on how to prepare for an earthquake, including:
 - **Before the Earthquake**: Tips on creating an emergency kit, securing heavy objects, and planning escape routes.
 - **During the Earthquake**: Advice on what to do when the shaking starts, including the "Drop, Cover, Hold On" technique.
 - **After the Earthquake**: Guidelines on how to check for injuries, avoid hazardous areas, and locate assembly points for safety.
 
 This section also includes a list of official **Assembly Points** provided by AFAD, helping users find the nearest safe locations to gather after an earthquake.
+
+<img src="Earthquake Risk/static/images/project/deprem-hazırlık-1.png" alt="model-1" width="850" height="450"> 
+<br>
+<img src="Earthquake Risk/static/images/project/deprem-hazırlık-2.png" alt="model-2" width="850" height="450">
+<br>
+<img src="Earthquake Risk/static/images/project/deprem-hazırlık-3.png" alt="model-2" width="850" height="450">  
 
 ---
 
