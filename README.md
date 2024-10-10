@@ -134,8 +134,8 @@ Once the application is running, you can navigate through the following sections
 ---
 
 ##💡 Future Enhancements
-📈 Real-Time Data Integration: Incorporate live data feeds from global earthquake monitoring agencies.
-🤖 Advanced Machine Learning Models: Use more sophisticated AI models for more accurate risk assessments.
+- **📈 Real-Time Data Integration**: Incorporate live data feeds from global earthquake monitoring agencies.
+- **🤖 Advanced Machine Learning Models**: Use more sophisticated AI models for more accurate risk assessments.
 
 ---
 
