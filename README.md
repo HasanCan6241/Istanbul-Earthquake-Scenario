@@ -2,7 +2,7 @@
 
 This project aims to provide a comprehensive platform for raising awareness and preparing the residents of Istanbul for potential earthquake scenarios, specifically focusing on the 7.5 Mw earthquake expected in the region. By utilizing advanced data analysis, AI-based predictions, and interactive visualizations, the platform seeks to inform users about risk factors and potential consequences while offering personalized recommendations for earthquake preparedness. The dataset used in this project was provided by the Istanbul Metropolitan Municipality and was last updated on March 2, 2023.
 
-<img src="Earthquake Risk/static/images/model.jpeg" alt="home" width="850" height="450">  <!-- Add an image relevant to your project -->
+<img src="Earthquake Risk/static/images/model.jpeg" alt="model" width="850" height="450">  <!-- Add an image relevant to your project -->
 
 ---
 
@@ -26,12 +26,19 @@ The platform is divided into several core features:
 ### 1. **Home Page**
 The homepage of the platform offers a clean and modern interface, introducing users to the core mission of the project. The goal is to raise awareness and educate the residents of Istanbul about the risks associated with earthquakes. The homepage outlines the project’s key features and encourages users to explore further.
 
+<img src="Earthquake Risk/static/images/project/anasayfa.png" alt="home" width="850" height="450">  <!-- Add an image relevant to your project -->
+
+
 ### 2. **Recent Earthquakes**
 This section provides users with an up-to-date list of earthquakes that have occurred within the last 24 hours across Turkey. The data is presented through:
 - **Interactive Maps**: Using the Folium library, users can explore a map with markers representing earthquake locations. Clicking on a marker reveals detailed information such as magnitude, depth, and the exact location of the earthquake.
 - **Heatmaps**: A visual representation of earthquake density across Turkey, highlighting the most earthquake-prone areas.
 
 The earthquake data is fetched in real-time through web scraping from the Kandilli Observatory, ensuring that users have the latest information.
+
+<img src="Earthquake Risk/static/images/project/Risk-Haritası-1.png" alt="risk1" width="850" height="450">  <!-- Add an image relevant to your project -->
+<br>
+<img src="Earthquake Risk/static/images/project/Risk-Haritası-2.png" alt="risk2" width="850" height="450">  <!-- Add an image relevant to your project -->
 
 ### 3. **Risk Map**
 The Risk Map provides a detailed overview of Istanbul's earthquake risk, broken down by district. This map is interactive and color-coded to represent different levels of risk:
