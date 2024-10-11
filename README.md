@@ -145,5 +145,5 @@ To set up the project on your local machine, follow these steps:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/username/Istanbul-earthquake-Scenario.git
+git clone https://github.com/HasanCan6241/Istanbul-earthquake-Scenario.git
 cd Istanbul-Earthquake-Scenario
